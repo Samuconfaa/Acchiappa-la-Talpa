@@ -10,7 +10,7 @@ Versione: 1-BETA
 
 int pinBottoni[] = {2,3,4,5};
 int pinLed[] = {6,7,8,9};
-int pinBuzer = 10;
+int pinBuzzer = 10;
 int durataGioco = 30000;
 int restart = 4000;             //tempo da aspettare prima di ricominciare la partita
 
@@ -27,11 +27,11 @@ void setup(){
 
     //inizializzazione pin led
     for (int i = 0; i < 4; i++) {
-        pinMode(ledPins[i], OUTPUT);
+        pinMode(pinLed[i], OUTPUT);
     }
 
     //inizializzazione pin buzzer
-    pinMode(buzzerPin, OUTPUT);
+    pinMode(pinBuzzer, OUTPUT);
 
     //funzione per avviare il gioco
     startGame();
@@ -46,7 +46,7 @@ void loop(){
         int rnd = random(0, 4);
 
         //accensione pin corrispondende al numero random
-        digitalWrite(ledPins[moleIndex], HIGH);
+        digitalWrite(pinLed[rnd], HIGH);
 
         //aspetta un po
         delay(random(500,2000));
@@ -54,12 +54,12 @@ void loop(){
         for (int i = 0; i < 4; i++) {
             if (digitalRead(pinBottoni[i]) == HIGH && i == rnd) {
                 score++; // aumenta il punteggio
-                tone(buzzerPin, 1000, 100); // suona il buzzer per indicare un colpo
+                tone(pinBuzzer, 1000, 100); // suona il buzzer per indicare un colpo
             }
         }
 
         //spegne il led 
-        digitalWrite(ledPins[moleIndex], LOW);
+        digitalWrite(pinLed[rnd], LOW);
 
 
         if (tempoTrascorso >= durataGioco) {
@@ -86,7 +86,7 @@ void endGame() {
   }
   
   // suona il buzzer per indicare la fine del gioco
-  tone(pinBuzer, 200, 1000);
+  tone(pinBuzzer, 200, 1000);
   
   // aspetta un po' prima di iniziare una nuova partita
   delay(restart);
