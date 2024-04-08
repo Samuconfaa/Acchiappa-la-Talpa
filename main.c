@@ -54,6 +54,7 @@ void loop(){
         for (int i = 0; i < 4; i++) {
             if (digitalRead(pinBottoni[i]) == HIGH && i == rnd) {
                 score++; // aumenta il punteggio
+                serial.print("+1");
                 tone(pinBuzzer, 1000, 100); // suona il buzzer per indicare un colpo
             }
         }
